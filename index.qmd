@@ -1,0 +1,227 @@
+---
+title: 'Pessoas e medidas'
+subtitle: 'Lista avaliativa -- Probabilidade e Estatística -- 2024.1'
+author: "Fernando Náufel"
+date: now
+date-format: "DD/MM/YYYY HH:mm"
+lang: pt
+execute: 
+  echo: false
+  eval: true
+  warning: true
+  error: true
+  include: true
+
+# bibliography: bibliography.bib
+
+# Português:
+# csl: universidade-do-porto-faculdade-de-engenharia-chicago-pt-crono.csl
+
+format:
+  html:
+    toc: true  
+    toc-depth: 3
+    number-depth: 3
+    theme: 
+      - journal
+      - _custom.scss
+    link-external-icon: true
+    link-external-newwindow: true
+    link-external-filter: ^(?:http:|https:)\/\/fnaufel\.github\.io
+    df-print: paged
+    code-link: true
+    code-copy: true
+    code-tools: true
+    self-contained: true
+---
+
+{{< include _math.qmd >}}
+
+```{r setup, include=FALSE}
+source('_setup.R')
+```
+
+# Instruções {-}
+
+## Fase de coleta de dados e amostragem {-}
+
+* Siga cuidadosamente as instruções em [*coleta de dados*](#coleta) e envie os arquivos `.csv` [no Moodle]{.hl}.
+
+
+## Fase de resolução {-}
+
+* Aguarde que o professor envie a você os arquivos `.csv` com os dados que você vai usar na resolução das [questões](#questoes).
+
+* Crie um arquivo .Rmd para resolver as questões [com os dados atribuídos a você]{.hl}. 
+
+* Escreva o máximo possível sobre o seu raciocínio. Justifique suas respostas.
+
+* Teste suas respostas. Tudo deve estar executando sem erros.
+
+* [Envie no Moodle]{.hl} o arquivo .Rmd com as suas resoluções.
+
+* Bom trabalho.
+
+
+# Coleta de dados {#coleta}
+
+## Sinistrismo {#sinistrismo}
+
+1. [Escolha $10$ pessoas]{.hl} dentre seus familiares e seus amigos, de preferência $5$ homens e $5$ mulheres.
+
+1. [Peça a cada uma das pessoas]{.hl} para preencher o questionário abaixo.
+
+1. [Preencha você também]{.hl} o questionário abaixo com as suas respostas.
+
+   ::: {.rmdbox latex=1}
+   
+   #### **QUESTIONÁRIO SOBRE PREFERÊNCIA DE MÃO** {-}
+   
+   * Qual é a sua idade?
+   
+   * Qual é o seu sexo?
+
+   * Por favor, indique qual mão você usaria para cada atividade abaixo, do seguinte modo:
+   
+     * Se você usaria *preferencialmente* uma das mãos, mas poderia usar --- ou ocasionalmente usa --- a outra mão, com resultados inferiores, então coloque "`+`" (um sinal de mais) na coluna da mão preferida.
+     
+     * Se você *sempre* usaria uma das mãos, e nunca a outra, então coloque "`++`" (*dois* sinais de mais) na coluna da mão usada.
+     
+     * Se você for *indiferente* quanto à mão usada, então coloque um "`+`" (sinal de mais) *em cada coluna*.
+
+    | ATIVIDADE                                           | ESQUERDA | DIREITA |
+    |-----------------------------------------------------+----------+---------|
+    | Escrever                                            |          |         |
+    | Desenhar                                            |          |         |
+    | Arremessar uma pedra                                |          |         |
+    | Cortar papel com uma tesoura                        |          |         |
+    | Escovar os dentes (com escova manual)               |          |         |
+    | Passar manteiga no pão com uma faca                 |          |         |
+    | Tomar sopa com uma colher                           |          |         |
+    | Varrer o chão (mão na parte de cima da vassoura)    |          |         |
+    | Riscar um fósforo (mão que segura o fósforo)        |          |         |
+    | Abrir uma caixa de sapatos (mão que segura a tampa) |          |         |
+
+   :::
+   
+1. [Gere o arquivo `sinistrismo.csv`]{.hl} com os resultados. 
+
+   O arquivo terá $12$ linhas (a primeira delas contendo os nomes das colunas) e [três colunas]{.hl}:
+
+   * `sexo`: `M` ou `F`.
+   
+   * `idade`: um valor inteiro positivo.
+   
+   * `nota`: um valor de ponto flutuante entre $-1$ e $1$ (inclusive) [com $3$ casas decimais]{.hl}, calculado para cada pessoa do seguinte modo:
+   
+     * $E = {}$ quantidade de "`+`" na coluna `Esquerda` do questionário preenchido.
+     
+     * $D = {}$ quantidade de "`+`" na coluna `Direita` do questionário preenchido.
+     
+     * `nota` $\displaystyle {}= \frac{E - D}{E + D}$
+
+1. Envie o arquivo [no Moodle]{.hl}.
+   
+   
+## Razão altura-mão {#alturamao}
+
+1. [Escolha $10$ pessoas]{.hl} dentre seus familiares e seus amigos, de preferência $5$ homens e $5$ mulheres.
+
+1. [Registre]{.hl}, para cada pessoa,
+
+   * O [sexo]{.hl},
+   
+   * A [idade]{.hl},
+   
+   * A [altura em centímetros]{.hl}, com $1$ casa decimal,
+   
+   * A [distância, em centímetros]{.hl}, com $1$ casa decimal, [entre a ponta do dedo mínimo e a ponta do polegar]{.hl} (ambos da mão esquerda), com a mão mais aberta possível --- como se a pessoa fosse tocar, ao mesmo tempo, só com a mão esquerda, duas teclas de um piano, uma muito afastada da outra.
+
+1. [Registre]{.hl} os mesmos dados [para você mesmo]{.hl}.
+
+1. [Gere o arquivo `razao.csv`]{.hl} com os resultados. 
+
+   O arquivo terá $12$ linhas (a primeira delas contendo os nomes das colunas) e [$5$ colunas]{.hl}:
+
+   * `sexo`: `M` ou `F`.
+   
+   * `idade`: um valor inteiro positivo.
+   
+   * `altura`: um valor de ponto flutuante [com $1$ casa decimal]{.hl}.
+   
+   * `mao`: um valor de ponto flutuante [com $1$ casa decimal]{.hl}.
+   
+   * `razao`: um valor de ponto flutuante [com $1$ casa decimal]{.hl}, com a razão $\displaystyle \frac{\texttt{altura}}{\texttt{mao}}$.
+
+1. Envie o arquivo [no Moodle]{.hl}.
+   
+
+# Questões {#questoes}
+
+## Sinistrismo {#sinistrismoq}
+
+1. Leia o arquivo `sinistrismo-amostra.csv` que você recebeu, gerando uma *tibble*.
+
+1. Faça uma [análise exploratória]{.hl}:
+
+   a. Quantos elementos tem sua amostra?
+   
+   a. Quais as proporções de homens e mulheres?
+   
+   a. Qual a distribuição das idades?
+   
+   a. Quais as estatísticas [globais]{.hl} relativas a `nota`?
+   
+   a. Quais as estatísticas [por idade]{.hl} relativas a `nota`?
+
+   a. Quais as estatísticas [por sexo]{.hl} relativas a `nota`?
+   
+   a. Faça [gráficos]{.hl} de `nota` (globais, por idade e por sexo). Escolha os tipos de gráfico mais adequados para a situação. Comente os resultados.
+   
+1. [Pesquise na internet]{.hl}: qual é a proporção de canhotos na população em geral?
+
+1. [Considere como canhota]{.hl} qualquer pessoa da sua amostra com `nota` ${}> 0{,}5$. 
+
+1. Construa um [intervalo de confiança]{.hl} para a proporção de canhotos na população, com base na sua amostra. Use nível de confiança de $95\%$.
+
+1. A proporção de canhotos na população em geral (que você pesquisou no item 3) está dentro do intervalo de confiança que você construiu? O que isto significa?
+
+1. Teste a seguinte [hipótese]{.hl}: a média das notas dos homens é igual à média das notas das mulheres. Use $\alpha = 0{,}05$. Comente o resultado.
+
+1. Qual a [correlação]{.hl} entre as notas e as idades?
+
+1. Construa um modelo de [regressão linear]{.hl} das notas pelas idades. Examine os resíduos. Comente os resultados.
+   
+
+## Razão altura-mão {#alturamaoq}
+
+1. Leia o arquivo `razao-amostra.csv` que você recebeu, gerando uma *tibble*.
+
+1. Faça uma [breve análise exploratória]{.hl}:
+
+   a. Quantos elementos tem sua amostra?
+   
+   a. Quais as proporções de homens e mulheres?
+   
+   a. Qual a distribuição das idades?
+   
+   a. Quais as estatísticas [globais]{.hl} relativas a `altura`, `mao`, e `razao`?
+   
+   a. Quais as estatísticas [por idade]{.hl} relativas a `altura`, `mao`, e `razao`?
+
+   a. Quais as estatísticas [por sexo]{.hl} relativas a `altura`, `mao`, e `razao`?
+   
+   a. Faça [gráficos]{.hl} de `altura`, `mao`, e `razao` (globais, por idade e por sexo). Escolha os tipos de gráfico mais adequados para a situação. Comente os resultados.
+
+1. Teste a seguinte [hipótese]{.hl}: `razao` é, em média, maior para os homens do que para as mulheres. Use $\alpha = 0{,}05$. Comente o resultado.
+
+1. Construa um [intervalo de confiança]{.hl} para a diferença das alturas médias entre homens e mulheres. Use nível de confiança de $95\%$.
+
+1. Qual é a [correlação]{.hl} entre `mao` e `altura`, sem levar em conta o sexo e a idade? 
+
+1. Qual é a [correlação]{.hl} entre `mao` e `altura`, levando em conta a idade? 
+
+1. Qual é a [correlação]{.hl} entre `mao` e `altura`, levando em conta o sexo? 
+
+1. Construa um modelo de [regressão linear]{.hl} das razões pelas idades. Examine os resíduos. Comente os resultados.
+   
